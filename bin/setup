@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+echo Install required libs / programs on Arch Linux
+sudo pacman -S avr-gcc avr-libc
+
+echo Clone firmware builder
+git clone https://github.com/jackhumbert/qmk_firmware.git
+cd qmk_firmware
+
+echo Initialize firmware builder
+make git-submodule
+
+echo Add layout
+git clone https://github.com/maxmeyer/ergodox-layout.git keyboards/ergodox_ez/keymaps/maxmeyer
