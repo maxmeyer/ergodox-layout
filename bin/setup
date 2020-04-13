@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if [ ! -f /etc/os-release ]; then
   echo "/etc/os-release does not exist"
@@ -7,10 +7,10 @@ fi
 
 source /etc/os-release
 
-if [ "$NAME" -eq "Arch Linux" ]; then
+if [ "$NAME" == "Arch Linux" ]; then
   echo Install required libs / programs on Arch Linux
   sudo pacman -S avr-gcc avr-libc
-elif [ "$NAME" -eq "Ubuntu" ]; then
+elif [ "$NAME" == "Ubuntu" ]; then
   echo Install required libs / programs on Ubuntu
   sudo apt-get install -y gcc-avr avr-libc
 fi
