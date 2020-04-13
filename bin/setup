@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 
 if [ ! -f /etc/os-release ]; then
-  echo "/etc/os-release does not exist"
+  echo "[ERROR] /etc/os-release does not exist"
   exit 1
 fi
 
 source /etc/os-release
 
 if [ "$NAME" == "Arch Linux" ]; then
-  echo Install required libs / programs on Arch Linux
+  echo [INFO] Install required libs / programs on Arch Linux
   sudo pacman -S avr-gcc avr-libc
 elif [ "$NAME" == "Ubuntu" ]; then
-  echo Install required libs / programs on Ubuntu
+  echo [INFO] Install required libs / programs on Ubuntu
   sudo apt-get install -y gcc-avr avr-libc
 fi
 
-echo Clone firmware builder
+echo [INFO] Clone firmware builder
 git clone https://github.com/jackhumbert/qmk_firmware.git tmp/qmk_firmware
 cd tmp/qmk_firmware
 
-echo Initialize firmware builder
+echo [INFO] Initialize firmware builder
 make git-submodule
 
-echo Add layout
+echo [INFO] Add layout
 git clone https://github.com/maxmeyer/ergodox-layout.git keyboards/ergodox_ez/keymaps/maxmeyer
