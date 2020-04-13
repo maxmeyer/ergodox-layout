@@ -22,7 +22,7 @@ jobs:
 
     - name: create release
       id: create_release
-      uses: actions/create-release@v1.0.1
+      uses: actions/create-release@v1.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -30,10 +30,10 @@ jobs:
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
-      if: contains(github.ref, 'tag')
+      if: startsWith(github.ref, 'refs/tags/')
 
     - name: upload release asset
-      uses: actions/upload-release-asset@v1.0.2
+      uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -41,4 +41,4 @@ jobs:
         asset_path: tmp/qmk_firmware/ergodox_ez_maxmeyer.hex
         asset_name: ergodox_ez_maxmeyer.hex
         asset_content_type: application/octet-stream
-      if: contains(github.ref, 'tag')
+      if: startsWith(github.ref, 'refs/tags/')
