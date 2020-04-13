@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+echo Available Layers
+echo "Layer 0: http://www.keyboard-layout-editor.com/#/gists/7458a46f6f6bbcef005dbb339428f7b1"
+
+if [ ! -d tmp/qmk_firmware/ ]; then
+  echo Setup project
+  ./bin/setup
+fi
+
+echo Build firmware
+cd tmp/qmk_firmware/
+make keyboard=ergodox_ez keymap=maxmeyer
